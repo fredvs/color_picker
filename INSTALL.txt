@@ -1,0 +1,17 @@
+There are pre-compiled binaries in /bin for Windows 32 bit, Linx 32/64 bit.
+
+To compile Color_Picker, uses Free Pascal Compiler and fpGUI tool-kit.
+
+The sources are in /src.
+
+You may have to edit extrafpc.cfg according with your fpGUI path.
+PS: For Windows => ~/gdi
+    For Unix => ~/x11
+
+To compile it, do in console =>
+
+> fpc color_picker @extrafpc.cfg
+
+Fred van Stappen
+fiens@hotmail.com
+
