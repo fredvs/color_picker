@@ -172,22 +172,9 @@ end;
 
 procedure TExtStyle.DrawMenuBar(ACanvas: TfpgCanvas; r: TfpgRect;
   ABackgroundColor: TfpgColor);
-var
-  r21, r22: TfpgRect;
 begin
-  r21.Height := r.Height div 2;
-  r21.Width := r.Width;
-  r21.Top := r.top;
-  r21.Left := r.Left;
-
-  r22.Height := r.Height div 2;
-  r22.Width := r.Width;
-  r22.Top := r.top + r22.Height;
-  r22.Left := r.Left;
-  // a possible future theme option
-  ACanvas.GradientFill(r21, clsilver, clwhite, gdVertical);
-    ACanvas.GradientFill(r22, clwhite, clsilver, gdVertical);
-
+ACanvas.SetColor(ABackgroundColor);
+ ACanvas.fillrectangle(r);
   // inner bottom line
   ACanvas.SetColor(clShadow1);
   ACanvas.DrawLine(r.Left, r.Bottom - 1, r.Right + 1, r.Bottom - 1);   // bottom
