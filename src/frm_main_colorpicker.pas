@@ -1,4 +1,4 @@
-unit frm_colorwheel;
+unit frm_main_colorpicker;
 
 {$mode objfpc}{$H+}
 
@@ -47,7 +47,7 @@ type
       const AMousePos: TPoint);
   end;
 
-  TWheelColorForm = class(TfpgForm)
+  TColorPickerForm = class(TfpgForm)
   private
     {@VFD_HEAD_BEGIN: WheelColorForm}
     frmcompare: TCompareForm;
@@ -488,30 +488,30 @@ begin
 closeac := caFree;
 end;
 
-////////////////  TWheelColorForm
+////////////////  TColorPickerForm
 
-procedure TWheelColorForm.btnColorPicked(Sender: TObject; const AMousePos: TPoint; const AColor: TfpgColor);
+procedure TColorPickerForm.btnColorPicked(Sender: TObject; const AMousePos: TPoint; const AColor: TfpgColor);
 begin
   ColorWheel1.SetSelectedColor(AColor);
 end;
 
-procedure TWheelColorForm.chkContinuousChanged(Sender: TObject);
+procedure TColorPickerForm.chkContinuousChanged(Sender: TObject);
 begin
   btnPicker.ContinuousResults := chkContinuous.Checked;
 end;
 
-procedure TWheelColorForm.ColorChanged(Sender: TObject);
+procedure TColorPickerForm.ColorChanged(Sender: TObject);
 begin
   UpdateHSVComponents;
   if not FViaRGB then
     UpdateRGBComponents;
 end;
 
-procedure TWheelColorForm.onPaintMain(Sender: TObject);
+procedure TColorPickerForm.onPaintMain(Sender: TObject);
 begin
  end;
 
-procedure TWheelColorForm.RGBChanged(Sender: TObject);
+procedure TColorPickerForm.RGBChanged(Sender: TObject);
 var
   rgb: TRGBTriple;
   c: TfpgColor;
@@ -529,7 +529,7 @@ begin
 
 end;
 
-procedure TWheelColorForm.ConvertToRGB(Sender: TObject);
+procedure TColorPickerForm.ConvertToRGB(Sender: TObject);
 begin
   if ConvertToInt(edHexa.Text) = True then
   begin
@@ -540,7 +540,7 @@ begin
   end;
 end;
 
-procedure TWheelColorForm.E_HexaKeyChar(Sender: TObject; AChar: TfpgChar; var Consumed: boolean);
+procedure TColorPickerForm.E_HexaKeyChar(Sender: TObject; AChar: TfpgChar; var Consumed: boolean);
 begin
 if Length(EdHexa.Text)= 0 then
 begin
@@ -552,7 +552,7 @@ else
     Consumed:= True;
 end;
 
-procedure TWheelColorForm.E_HexaKeyPress(Sender: TObject; var KeyCode: word; var ShiftState: TShiftState;
+procedure TColorPickerForm.E_HexaKeyPress(Sender: TObject; var KeyCode: word; var ShiftState: TShiftState;
           var Consumed: boolean);
 begin
   if ((KeyCode= KeyReturn) or (KeyCode= KeyPEnter)) and (Length(EdHexa.Text)= 7) then
@@ -561,7 +561,7 @@ begin
   end;
 end;
 
-constructor TWheelColorForm.Create(AOwner: TComponent);
+constructor TColorPickerForm.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   FViaRGB := False;
@@ -569,18 +569,18 @@ begin
   LoadColorList;
 end;
 
-procedure TWheelColorForm.onclosemain(Sender: TObject; var closeac : Tcloseaction);
+procedure TColorPickerForm.onclosemain(Sender: TObject; var closeac : Tcloseaction);
 begin
 frmcompare.close;
 closeac := caFree;
 end;
 
-procedure TWheelColorForm.btnQuitClicked(Sender: TObject);
+procedure TColorPickerForm.btnQuitClicked(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TWheelColorForm.chkCrossHairChange(Sender: TObject);
+procedure TColorPickerForm.chkCrossHairChange(Sender: TObject);
 begin
   if chkCrossHair.Checked then
     ColorWheel1.CursorSize := 400
@@ -588,7 +588,7 @@ begin
     ColorWheel1.CursorSize := 5;
 end;
 
-procedure TWheelColorForm.UpdateHSVComponents;
+procedure TColorPickerForm.UpdateHSVComponents;
 begin
   edH.Text := IntToStr(ColorWheel1.Hue);
   edS.Text := FormatFloat('0.000', ColorWheel1.Saturation);
@@ -598,7 +598,7 @@ begin
   frmcompare.BackgroundColor := ValueBar1.SelectedColor;
 end;
 
-procedure TWheelColorForm.UpdateRGBComponents;
+procedure TColorPickerForm.UpdateRGBComponents;
 var
   rgb: TRGBTriple;
   c: TfpgColor;
@@ -611,13 +611,13 @@ begin
   edHexa.Text := Hexa(rgb.Red, rgb.Green, rgb.Blue);
 end;
 
-procedure TWheelColorForm.ColorBoxChange(Sender: TObject);
+procedure TColorPickerForm.ColorBoxChange(Sender: TObject);
 begin
   edHexa.Text := TColor(ColorList[ColorBox.FocusItem]).Value ;
  ConvertToRGB(self);
 end;
 
-procedure TWheelColorForm.AfterCreate;
+procedure TColorPickerForm.AfterCreate;
 var
   i : integer;
 begin
@@ -636,7 +636,7 @@ begin
   with ColorWheel1 do
   begin
     Name := 'ColorWheel1';
-    //Border:=true;
+    Border:=true;
     SetPosition(20, 20, 272, 250);
   end;
 
@@ -898,12 +898,14 @@ begin
     FontDesc := '#Label1';
     Hint := 'Click on Picker and maintain click => release get the color';
     ImageName := 'vfd.picker';
-    FShowHint:=true;
+    ShowHint:=true;
     TabOrder := 24;
     OnColorPicked := @btnColorPicked;
   end;
 
-  chkContinuous := TfpgCheckBox.Create(self);
+  fpgapplication.HintPause:=1500;
+
+ chkContinuous := TfpgCheckBox.Create(self);
   with chkContinuous do
   begin
     Name := 'chkContinous';

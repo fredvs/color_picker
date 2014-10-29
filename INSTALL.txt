@@ -1,14 +1,18 @@
-There are pre-compiled binaries in /bin for Windows 32 bit, Linx 32/64 bit.
+There are pre-compiled binaries in /bin for Windows 32 bit, Linux 32/64 bit.
 
 To compile Color_Picker, uses Free Pascal Compiler and fpGUI tool-kit.
 
 The sources are in /src.
 
+- For Lazarus users => load color_picker.lpi (package fpGUI must be installed)
+
+- For fpc console users =>
+
 You may have to edit extrafpc.cfg according with your fpGUI path.
 PS: For Windows => ~/gdi
     For Unix => ~/x11
 
-To compile it, do in console =>
+To compile, do in console =>
 
 > fpc color_picker @extrafpc.cfg
 

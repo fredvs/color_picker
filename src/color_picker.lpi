@@ -4,8 +4,10 @@
     <Version Value="9"/>
     <General>
       <Flags>
+        <SaveOnlyProjectUnits Value="True"/>
         <MainUnitHasCreateFormStatements Value="False"/>
         <MainUnitHasTitleStatement Value="False"/>
+        <LRSInOutputDirectory Value="False"/>
       </Flags>
       <SessionStorage Value="None"/>
       <MainUnit Value="0"/>
@@ -30,6 +32,11 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="fpgui_toolkit"/>
+      </Item1>
+    </RequiredPackages>
     <Units Count="1">
       <Unit0>
         <Filename Value="color_picker.pas"/>
@@ -62,7 +69,7 @@
         <MsgFileName Value=""/>
       </CompilerMessages>
       <ConfigFile>
-        <CustomConfigFile Value="True"/>
+        <ConfigFilePath Value="extralaz.cfg"/>
       </ConfigFile>
       <CompilerPath Value="$(CompPath)"/>
     </Other>
