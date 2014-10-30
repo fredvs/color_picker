@@ -1120,15 +1120,16 @@ begin
   updatewindowposition;
   oriWheelColorForm.X := left;
   oriWheelColorForm.Y := top;
+
+  fpgapplication.ProcessMessages;
   {@VFD_BODY_END: WheelColorForm}
     frmcompare := TCompareForm.Create(nil);
 
-     fpgapplication.ProcessMessages;
+   frmcompare.Show;
+
    frmcompare.left := oriWheelColorForm.X + 167;
   frmcompare.top := oriWheelColorForm.y + 295  ;
   frmcompare.UpdateWindowPosition;
-
-  frmcompare.Show;
   
   // link the two components
   ColorWheel1.ValueBar := ValueBar1;

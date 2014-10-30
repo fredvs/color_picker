@@ -41,7 +41,6 @@
       <Unit0>
         <Filename Value="color_picker.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="color_picker"/>
       </Unit0>
     </Units>
   </ProjectOptions>
@@ -65,13 +64,10 @@
       <LinkSmart Value="True"/>
     </Linking>
     <Other>
-      <CompilerMessages>
-        <MsgFileName Value=""/>
-      </CompilerMessages>
       <ConfigFile>
+        <CustomConfigFile Value="True"/>
         <ConfigFilePath Value="extralaz.cfg"/>
       </ConfigFile>
-      <CompilerPath Value="$(CompPath)"/>
     </Other>
   </CompilerOptions>
   <Debugging>
